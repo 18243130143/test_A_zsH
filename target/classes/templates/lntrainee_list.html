@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+<body>
+<center>
+    <div id="lntraineediv">
+            学员名字:<input v-model="searchEntity.nname"><br>
+            <input type="button" value="检索" @click="findAllConnAndPage()"/>
+            <table border="1" rules="all" width="600px">
+                <tr>
+                    <th>学员编号</th>
+                    <th>学员姓名</th>
+                    <th>学员性别</th>
+                    <th>学员年龄</th>
+                    <th>报名日期</th>
+                    <th>在学科目</th>
+                    <th>教练编号</th>
+                    <th>教练姓名</th>
+                    <th>教练生日</th>
+                    <th>教练性别</th>
+                </tr>
+                <tr v-for="l in list" align="center">
+
+                    <td>{{l.tlnid}}</td>
+                    <td>{{l.nname}}</td>
+                    <td>{{l.tlnsex}}</td>
+                    <td>{{l.tlnage}}</td>
+                    <td>{{l.tlnindate}}</td>
+                    <td>{{l.subjectBean.slnname}}</td>
+                    <td>{{l.lncoachBean.clnid}}</td>
+                    <td>{{l.lncoachBean.clnname}}</td>
+                    <td>{{l.lncoachBean.clnbirth}}</td>
+                    <td>{{l.lncoachBean.clnsex}}</td>
+                </tr>
+                <tr>
+                    <td colspan="100">
+                        当前{{pageInfo.pageNum}}/{{pageInfo.pages}}页,总计{{pageInfo.total}}条记录;
+                        <input type="button" value="首页" @click="paging(1)"/>
+                        <input type="button" value="上一页" @click="paging(pageInfo.prePage)"/>
+                        <input type="button" value="下一页" @click="paging(pageInfo.nextPage)"/>
+                        <input type="button" value="尾页" @click="paging(pageInfo.pages)"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    <script type="text/javascript" src="../pagejs/lntrainee_list.js"></script>
+</center>
+</body>
+</html>
